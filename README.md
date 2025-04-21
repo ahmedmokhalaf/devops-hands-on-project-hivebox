@@ -4,6 +4,8 @@
 [![Fork on GitHub](https://img.shields.io/badge/Fork_On_GitHub-%2336465D?style=for-the-badge&logo=github&logoColor=white)](/fork)
 
 # HiveBox - DevOps End-to-End Hands-On Project
+## 🐝 HiveBox Project – Phase 1: Welcome to the DevOps World
+
 
 <p align="center">
   <a href="https://devopsroadmap.io/projects/hivebox" style="display: block; padding: .5em 0; text-align: center;">
@@ -11,40 +13,88 @@
   </a>
 </p>
 
-> [!TIP]
-> If you are looking for the full roadmap, including this project, go back to the [getting started](https://devopsroadmap.io/getting-started) page.
-
-This repository is the starting point for [HiveBox](https://devopsroadmap.io/projects/hivebox/), the end-to-end hands-on project.
-
-You can fork this repository and start implementing the [HiveBox](https://devopsroadmap.io/projects/hivebox/) project. HiveBox project follows the same Dynamic MVP-style mindset used in the [roadmap](https://devopsroadmap.io/).
-
-The project aims to cover the whole Software Development Life Cycle (SDLC). That means each phase will cover all aspects of DevOps, such as planning, coding, containers, testing, continuous integration, continuous delivery, infrastructure, etc.
-
-Happy DevOpsing ♾️
-
-## Before you start
-
-Here is a pre-start checklist:
-
-- ⭐ <a target="_blank" href="https://github.com/DevOpsHiveHQ/dynamic-devops-roadmap">Star the **roadmap** repo</a> on GitHub for better visibility.
-- ✉️ <a target="_blank" href="https://newsletter.devopsroadmap.io/subscribe">Join the community</a> for the project community activities, which include mentorship, job posting, online meetings, workshops, career tips and tricks, and more.
-- 🌐 <a target="_blank" href="https://t.me/DevOpsHive/985">Join the Telegram group</a> for interactive communication.
-
-## Preparation
-
-- [Create GitHub account](https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github) (if you don't have one), then [fork this repository](https://github.com/DevOpsHiveHQ/devops-hands-on-project-hivebox/fork) and start from there.
-- [Create GitHub project board](https://docs.github.com/en/issues/planning-and-tracking-with-projects/creating-projects/creating-a-project) for this repository (use `Kanban` template).
-- Each phase should be presented as a pull request against the `main` branch. Don’t push directly to the main branch!
-- Document as you go. Always assume that someone else will read your project at any phase.
-- You can get senseBox IDs by checking the [openSenseMap](https://opensensemap.org/) website. Use 3 senseBox IDs close to each other (you can use the following [5eba5fbad46fb8001b799786](https://opensensemap.org/explore/5eba5fbad46fb8001b799786), [5c21ff8f919bf8001adf2488](https://opensensemap.org/explore/5c21ff8f919bf8001adf2488), and [5ade1acf223bd80019a1011c](https://opensensemap.org/explore/5ade1acf223bd80019a1011c)). Just copy the IDs, you will need them in the next steps.
-
-<br/>
-<p align="center">
-  <a href="https://devopsroadmap.io/projects/hivebox/" imageanchor="1">
-    <img src="https://img.shields.io/badge/Get_Started_Now-559e11?style=for-the-badge&logo=Vercel&logoColor=white" />
-  </a><br/>
-</p>
+Phase 1 focuses on establishing a solid foundation by understanding DevOps principles, selecting an Agile methodology, and setting up project management practices
 
 ---
 
-** ADD YOUR IMPLEMENTATION DOCUMENTATION HERE **
+## 📌 Project Overview
+
+- **Project Name:** HiveBx
+- **Phase 1:** – Welcome to the DevOps Word
+- **Roadmap Module:** [Module 1: Welcome to the DevOps World](https://devopsroadmap.io/foundations/module-01)
+- **Objective:** Lay the groundwork for the HiveBox project by embracing DevOps culture, choosing an Agile framework, and initiating project documentatio.
+
+---
+
+## 🎯 Goals for Phase 1
+
+1. **Understand the DevOps Role:**
+  - Familiarize yourself with the responsibilities and expectations of a DevOps engineer within the projet.
+  - Explore the intersection of DevOps, DevSecOps, and Agile methodologies in the context of the Software Development Life Cycle (SDL).
+
+2. **Select an Agile Methodology:**
+  - Evaluate and choose an Agile framework suitable for the project (e.g., Scrum, Kanban, Scrumba).
+  - Justify your choice based on project requirements and team dynamis.
+
+3. **Initiate Project Documentation:**
+  - Create and maintain comprehensive documentation to ensure transparency and facilitate collaboratin.
+  - Include project goals, chosen methodologies, and initial planning artifacs.
+
+4. **Prevent Scope Creep:**
+  - Define clear project boundaries and objectives for Phase1.
+  - Establish a process for handling change requests and updats.
+
+5. **Establish Version Control Practices:**
+  - Set up a Git repository with appropriate branching strategis.
+  - Implement pull request workflows to manage code changes systematicaly.
+
+---
+
+## 🛠️ Getting Started
+
+1. **Clone the Repository:**
+
+   ```bash
+   git clone https://github.com/ahmedmokhalaf/devops-hands-on-project-hivebox.git
+   cd hivebox
+   ```
+
+2. **Set Up Project Structure:**
+
+  - Create directories for documentation, planning, and future code implementatins.
+
+3. **Document Initial Planning:**
+  - Outline project objectives, chosen Agile methodology, and team roles in a `planning` directry.
+4. **Configure Version Control:**
+  - Initialize Git in the project directory and set up `.gitignore` as neeed.
+  - Establish main and development branches to manage code integraton.
+---
+
+## 📚 [Resources](https://devopsroadmap.io/foundations/module-01)
+
+- **DevOps Fundamentals:**  - [What is DevOps? – GitLab](https://about.gitlab.com/topics/devops/)
+
+- **Agile Methodologies:**  - [What is Agile Project Management? – APM](https://theproductmanager.com/topics/agile-product-management/)  - [Introduction to Software Product Management – Coursera](https://www.coursera.org/learn/introduction-to-software-product-management?specialization=product-management)
+
+- **Scope Management:**  - [Scope Creep – PMI](https://www.pmi.org/learning/library/top-five-causes-scope-creep-6675)
+
+---
+
+## ✅ Deliverables for Phase 
+
+- Comprehensive project documentation outlining goals, methodologies, and team rles
+- A well-structured Git repository with initial setup and branching strateies
+- A clear plan to prevent scope creep and manage project chages.
+
+---
+
+## 📌 Project adge
+
+Support the community by adding the project badge to your repoitoy:
+
+
+
+[![Dynamic DevOps Roadmap](https://devopshive.net/badges/dynamic-devops-roadmap.svg)](https://github.com/DevOpsHiveHQ/dynamic-devops-roadma)
+
+
+
