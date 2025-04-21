@@ -4,7 +4,7 @@
 [![Fork on GitHub](https://img.shields.io/badge/Fork_On_GitHub-%2336465D?style=for-the-badge&logo=github&logoColor=white)](/fork)
 
 # HiveBox - DevOps End-to-End Hands-On Project
-## 🐝 HiveBox Project – Phase 1: Welcome to the DevOps World
+## 🐝 HiveBox Project – Phase 2: DevOps Core Fundamentals
 
 
 <p align="center">
@@ -13,88 +13,95 @@
   </a>
 </p>
 
-Phase 1 focuses on establishing a solid foundation by understanding DevOps principles, selecting an Agile methodology, and setting up project management practices
+---
+
+Welcome to Phase 2 of the **HiveBox** project In this phase, we focus on establishing core DevOps competencies, including implementing a basic Python application, containerizing it with Docker, and performing local testing
 
 ---
 
 ## 📌 Project Overview
 
-- **Project Name:** HiveBx
-- **Phase 1:** – Welcome to the DevOps Word
-- **Roadmap Module:** [Module 1: Welcome to the DevOps World](https://devopsroadmap.io/foundations/module-01)
-- **Objective:** Lay the groundwork for the HiveBox project by embracing DevOps culture, choosing an Agile framework, and initiating project documentatio.
+- **Project Name:** HiveBox
+- **Phase 2:**  – DevOps Core
+- **Roadmap Module:** [Module 2: Basics - DevOps Core](https://devopsroadmap.io/foundations/module-02/)
+- **Objective:** Develop a foundational Python application, containerize it using Docker, and ensure it functions correctly through local testing.
 
 ---
 
-## 🎯 Goals for Phase 1
+## 🎯 Goals for Phase 2
 
-1. **Understand the DevOps Role:**
-  - Familiarize yourself with the responsibilities and expectations of a DevOps engineer within the projet.
-  - Explore the intersection of DevOps, DevSecOps, and Agile methodologies in the context of the Software Development Life Cycle (SDL).
+1. **Implement Initial Application:**
+  - Create a Python function that prints the application version.
+  - Adopt Semantic Versioning, starting with version `v0.0.1`.
 
-2. **Select an Agile Methodology:**
-  - Evaluate and choose an Agile framework suitable for the project (e.g., Scrum, Kanban, Scrumba).
-  - Justify your choice based on project requirements and team dynamis.
+2. **Containerize the Application:**
+  - Write a `Dockerfile` to containerize the Python application.
+  - Build and run the Docker image locally.
 
-3. **Initiate Project Documentation:**
-  - Create and maintain comprehensive documentation to ensure transparency and facilitate collaboratin.
-  - Include project goals, chosen methodologies, and initial planning artifacs.
-
-4. **Prevent Scope Creep:**
-  - Define clear project boundaries and objectives for Phase1.
-  - Establish a process for handling change requests and updats.
-
-5. **Establish Version Control Practices:**
-  - Set up a Git repository with appropriate branching strategis.
-  - Implement pull request workflows to manage code changes systematicaly.
+3. **Test the Containerized Application:**
+  - Execute the Docker container to verify it outputs the correct version.
+  - Document the testing process for future reference.
 
 ---
 
 ## 🛠️ Getting Started
 
-1. **Clone the Repository:**
+### 1. Clone the Repository
 
-   ```bash
-   git clone https://github.com/ahmedmokhalaf/devops-hands-on-project-hivebox.git
-   cd hivebox
-   ```
+Ensure you have forked the HiveBox project repository:
 
-2. **Set Up Project Structure:**
 
-  - Create directories for documentation, planning, and future code implementatins.
+### Clone application
+```bash
 
-3. **Document Initial Planning:**
-  - Outline project objectives, chosen Agile methodology, and team roles in a `planning` directry.
-4. **Configure Version Control:**
-  - Initialize Git in the project directory and set up `.gitignore` as neeed.
-  - Establish main and development branches to manage code integraton.
+git clone https://github.com/ahmedmokhalaf/devops-hands-on-project-hivebox.git
+cd hivebox
+```
+### Build the Docker Image
+
+Build the Docker image using the following command:
+
+```bash
+docker build -t hivebox:0.0.1 .
+```
+
+
+This command creates a Docker image tagged as `hivebox:0.0.1`.
+
+### Run the Docker Container
+
+Execute the Docker container:
+
+```bash
+docker run  hivebox:0.0.1
+```
+
+You should see the following output:
+
+`HiveBox Application Version: 0.0.1`
+
+
 ---
 
-## 📚 [Resources](https://devopsroadmap.io/foundations/module-01)
 
-- **DevOps Fundamentals:**  - [What is DevOps? – GitLab](https://about.gitlab.com/topics/devops/)
+## 📚 Resources
 
-- **Agile Methodologies:**  - [What is Agile Project Management? – APM](https://theproductmanager.com/topics/agile-product-management/)  - [Introduction to Software Product Management – Coursera](https://www.coursera.org/learn/introduction-to-software-product-management?specialization=product-management)
+- **Semantic Versioning:** [semver.org](https://semver.org/)
 
-- **Scope Management:**  - [Scope Creep – PMI](https://www.pmi.org/learning/library/top-five-causes-scope-creep-6675)
+- **Docker Documentation:** [Docker Docs](https://docs.docker.com/)
 
----
-
-## ✅ Deliverables for Phase 
-
-- Comprehensive project documentation outlining goals, methodologies, and team rles
-- A well-structured Git repository with initial setup and branching strateies
-- A clear plan to prevent scope creep and manage project chages.
+- **Python Official Website:** [Python Docs](https://www.python.org/)
 
 ---
 
-## 📌 Project adge
+## ✅ Deliverables for Phase2
 
-Support the community by adding the project badge to your repoitoy:
+- A Python script (`app.py`) that prints the application version.
 
+- A `Dockerfile` that containerizes the application.
 
+- A successfully built Docker image tagged as `hivebox:0.0.1`.
 
-[![Dynamic DevOps Roadmap](https://devopshive.net/badges/dynamic-devops-roadmap.svg)](https://github.com/DevOpsHiveHQ/dynamic-devops-roadma)
+- Documentation outlining the steps to build and run the Docker container.
 
-
-
+---
