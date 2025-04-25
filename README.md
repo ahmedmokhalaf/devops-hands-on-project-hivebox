@@ -4,7 +4,7 @@
 [![Fork on GitHub](https://img.shields.io/badge/Fork_On_GitHub-%2336465D?style=for-the-badge&logo=github&logoColor=white)](/fork)
 
 # HiveBox - DevOps End-to-End Hands-On Project
-## 🐝 HiveBox Project – Phase 2: DevOps Core Fundamentals
+## 🐝 HiveBox Project – Phase 3: Building the RESTful API with FastAPI
 
 
 <p align="center">
@@ -15,93 +15,170 @@
 
 ---
 
-Welcome to Phase 2 of the **HiveBox** project In this phase, we focus on establishing core DevOps competencies, including implementing a basic Python application, containerizing it with Docker, and performing local testing
-
----
 
 ## 📌 Project Overview
 
-- **Project Name:** HiveBox
-- **Phase 2:**  – DevOps Core
-- **Roadmap Module:** [Module 2: Basics - DevOps Core](https://devopsroadmap.io/foundations/module-02/)
-- **Objective:** Develop a foundational Python application, containerize it using Docker, and ensure it functions correctly through local testing.
+This is a lightweight backend API built with **FastAPI** that fetches environmental sensor data (temperature) using the [openSenseMap API](https://docs.opensensemap.org/). The project includes containerization, code linting, testing, and CI/CD automation.
 
 ---
 
-## 🎯 Goals for Phase 2
+## 🚀 Features
 
-1. **Implement Initial Application:**
-  - Create a Python function that prints the application version.
-  - Adopt Semantic Versioning, starting with version `v0.0.1`.
-
-2. **Containerize the Application:**
-  - Write a `Dockerfile` to containerize the Python application.
-  - Build and run the Docker image locally.
-
-3. **Test the Containerized Application:**
-  - Execute the Docker container to verify it outputs the correct version.
-  - Document the testing process for future reference.
+- **/version** – Returns the current version of the deployed app
+- **/temperature** – Returns average temperature data from all senseBoxes (within the last 1 hour)
+- **openSenseMap API integration**
+- Fully containerized with **Docker**
+- Automated **CI/CD** with GitHub Actions
+- Code quality enforcement via **Pylint** and **Hadolint**
+- Secure development practices with **OpenSSF Scorecard**
 
 ---
 
-## 🛠️ Getting Started
+## 📦 Tech Stack
 
-### 1. Clone the Repository
+- [FastAPI](https://fastapi.tiangolo.com/)
+- Python 3.9-slim
+- Docker
+- GitHub Actions (CI/CD)
+- openSenseMap API
+- Pylint, Hadolint (Linting)
+- Pytest (Unit Testing)
 
-Ensure you have forked the HiveBox project repository:
+---
 
+## 🧰 Setup Instructions
 
-### Clone application
-```bash
+### 🔨 Prerequisites
 
-git clone https://github.com/ahmedmokhalaf/devops-hands-on-project-hivebox.git
-cd hivebox
-```
-### Build the Docker Image
+- Python 3.9-slim
+- Docker & Docker Compose
+- [VS Code](https://code.visualstudio.com/) with extensions:
+  - Pylint
+  - Hadolint
 
-Build the Docker image using the following command:
+---
 
-```bash
-docker build -t hivebox:0.0.1 .
-```
-
-
-This command creates a Docker image tagged as `hivebox:0.0.1`.
-
-### Run the Docker Container
-
-Execute the Docker container:
+### 📥 Install Dependencies
 
 ```bash
-docker run  hivebox:0.0.1
+python -m venv venv
+source venv/bin/activate  # or .\venv\Scripts\activate on Windows
+pip install -r requirements.txt
 ```
 
-You should see the following output:
+---
 
-`HiveBox Application Version: 0.0.1`
+### 🧪 Run Tests
 
+```bash
+pytest
+```
 
 ---
 
+### ▶️ Run the App (Dev)
 
-## 📚 Resources
-
-- **Semantic Versioning:** [semver.org](https://semver.org/)
-
-- **Docker Documentation:** [Docker Docs](https://docs.docker.com/)
-
-- **Python Official Website:** [Python Docs](https://www.python.org/)
+```bash
+uvicorn app.main:app --reload
+```
 
 ---
 
-## ✅ Deliverables for Phase2
+## 🐳 Docker Usage
 
-- A Python script (`app.py`) that prints the application version.
+### 🏗️ Build the Docker Image
 
-- A `Dockerfile` that containerizes the application.
+```bash
+docker build -t hivebox-api .
+```
 
-- A successfully built Docker image tagged as `hivebox:0.0.1`.
+### 🚀 Run the Container
 
-- Documentation outlining the steps to build and run the Docker container.
+```bash
+docker run -d hivebox-api
+```
 
 ---
+
+## 🔁 API Endpoints
+
+### `/version`
+
+**Method**: `GET`  
+**Response**:
+```json
+{
+  "version": "0.1.0"
+}
+```
+
+---
+
+### `/temperature`
+
+**Method**: `GET`  
+**Response**:
+```json
+{
+  "average_temperature": 13.61,
+  "unit": "°C",
+  "measurements_count": 3,
+  "timestamp": "2025-04-24T20:40:08.237476+00:00"
+}
+```
+
+**Note**: Only includes sensor data from the last **1 hour**.
+
+---
+
+## 🔧 Development Tools
+
+- **Linting**:  
+  - Python: `pylint`
+  - Docker: `hadolint`
+
+- **Git**:  
+  - Follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+  - Pre-commit checks via GitHub Actions
+
+---
+
+## 🔄 Continuous Integration (GitHub Actions)
+
+- Lint Python code and Dockerfile
+- Build Docker image
+- Run unit tests
+- Verify `/version` endpoint response
+- OpenSSF Scorecard integration
+
+---
+
+## 🔒 Security & Best Practices
+
+- OpenSSF Scorecard GitHub Action integration
+- Docker built with multi-stage and non-root user
+- CI enforces quality and security standards
+
+---
+
+## 📄 License
+
+MIT License. See `LICENSE` for details.
+
+---
+
+## 👥 Contributors
+
+Maintained by the backend engineering team 🚀
+
+---
+
+## 📬 Feedback & Issues
+
+Found a bug or have a feature request? [Open an issue](https://github.com/your-org/sensor-api/issues).
+
+```
+
+---
+
+Let me know if you'd like this adapted to use Flask instead of FastAPI, or want a badge section (CI status, Docker build, etc.) added at the top.
