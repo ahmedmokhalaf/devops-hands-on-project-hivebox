@@ -161,9 +161,6 @@ docker run -d hivebox-api
 
 ---
 
-
 ## 📬 Feedback & Issues
 
 Found a bug or have a feature request? [[Open an issue](https://github.com/your-org/sensor-api/issues)](https://github.com/ahmedmokhalaf/devops-hands-on-project-hivebox/issues/new).
-
-```
