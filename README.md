@@ -161,24 +161,9 @@ docker run -d hivebox-api
 
 ---
 
-## 📄 License
-
-MIT License. See `LICENSE` for details.
-
----
-
-## 👥 Contributors
-
-Maintained by the backend engineering team 🚀
-
----
 
 ## 📬 Feedback & Issues
 
-Found a bug or have a feature request? [Open an issue](https://github.com/your-org/sensor-api/issues).
+Found a bug or have a feature request? [[Open an issue](https://github.com/your-org/sensor-api/issues)](https://github.com/ahmedmokhalaf/devops-hands-on-project-hivebox/issues/new).
 
 ```
-
----
-
-Let me know if you'd like this adapted to use Flask instead of FastAPI, or want a badge section (CI status, Docker build, etc.) added at the top.
