@@ -5,7 +5,8 @@ on:
     # branches: [ phase-3-laying-the-base ]
   pull_request:
     # branches: [ phase-3-laying-the-base ]
-
+env:
+  senseBoxIds : ${{ vars.senseBoxIds}}
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
