@@ -1,10 +1,54 @@
-from fastapi import FastAPI
+from ctypes import util
+import time
+from fastapi import FastAPI, Request, Response
 from app.api.v1 import endpoints
+from prometheus_client import CONTENT_TYPE_LATEST, CollectorRegistry, Counter, Gauge, Histogram, generate_latest
 
-app = FastAPI(title="HiveBox API", version="0.1.0")
+
+app = FastAPI(title="HiveBox API")
 
 app.include_router(endpoints.router, prefix="/api/v1")
+
+
+REQUEST_COUNT = Counter('http_request_total', 'Total HTTP Requests', ['method', 'status', 'path']) 
+REQUEST_LATENCY = Histogram('http_request_duration_seconds', 'HTTP Request Duration', ['method', 'status', 'path'])
+REQUEST_IN_PROGRESS = Gauge('http_requests_in_progress', 'HTTP Requests in progress', ['method', 'path'])
+  
+# System metrics
+  
+CPU_USAGE = Gauge('process_cpu_usage', 'Current CPU usage in percent')
+MEMORY_USAGE = Gauge('process_memory_usage_bytes', 'Current memory usage in bytes')
+
+@app.middleware("http")
+async def monitor_requests(request: Request, call_next):
+    method = request.method
+    path = request.url.path 
+    
+    REQUEST_IN_PROGRESS.labels(method=method, path=path).inc()
+    start_time = time.time() 
+    response = await call_next(request)
+    duration = time.time() - start_time 
+    status = response.status_code
+    REQUEST_COUNT.labels(method=method, status=status, path=path).inc() 
+    REQUEST_LATENCY.labels(method=method, status=status, path=path).observe(duration)
+    REQUEST_IN_PROGRESS.labels(method=method, path=path).dec()
+    
+    return response
 
 @app.get("/health")
 async def health_check():
     return {"status": "healthy"}
+
+def update_system_metrics():
+    """Safely updates system metrics while handling potential exceptions."""
+    try:
+        CPU_USAGE.set(psutil.cpu_percent())
+        MEMORY_USAGE.set(psutil.Process().memory_info().rss)
+    except Exception as e:
+        print(f"Error updating metrics: {e}")
+  
+@app.get("/metrics")
+async def metrics():
+    """Updates system metrics before serving Prometheus-compatible output."""
+    update_system_metrics()
+    return Response(content=generate_latest(), media_type=CONTENT_TYPE_LATEST)
