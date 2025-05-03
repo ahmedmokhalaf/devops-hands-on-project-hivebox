@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 from fastapi import APIRouter, FastAPI, HTTPException
 from datetime import datetime, timedelta, timezone
 import httpx
@@ -5,15 +7,14 @@ from typing import Optional, List, Dict, Any
 import asyncio
 import re
 
+
+load_dotenv()
 router = APIRouter()
 app = FastAPI()
 
-VERSION = "0.1.0"
-BOX_IDS = [
-    "5eba5fbad46fb8001b799786", 
-    "5c21ff8f919bf8001adf2488", 
-    "5ade1acf223bd80019a1011c"
-]
+VERSION = "0.2.0"
+BOX_IDS = os.environ['senseBoxIds']
+BOX_IDS = BOX_IDS.split(",") if BOX_IDS else []
 SENSEBOX_API = "https://api.opensensemap.org/boxes"
 
 # Validate box ID format (12 or 24 character hex string)
@@ -57,7 +58,6 @@ async def get_temperature():
     one_hour_ago = datetime.now(timezone.utc) - timedelta(hours=1)
     all_recent_temps: List[float] = []
     errors: List[str] = []
-
     async with httpx.AsyncClient(timeout=10.0) as client:
         tasks = []
         
@@ -67,6 +67,15 @@ async def get_temperature():
             
         # Wait for all tasks to complete
         await asyncio.gather(*tasks)
+        
+        average_temperature = sum(all_recent_temps) / len(all_recent_temps)
+            # Assign status based on temperature range
+        if average_temperature < 10:
+            status = "Too Cold"
+        elif 10 <= average_temperature <= 36:
+            status = "Good"
+        else:
+            status = "Too Hot"
 
         if not all_recent_temps:
             if errors:
@@ -81,9 +90,11 @@ async def get_temperature():
                 status_code=503,
                 detail={"error": "No recent temperature data available."}
             )
+            
 
         return {
-            "average_temperature": sum(all_recent_temps) / len(all_recent_temps),
+            "average_temperature": average_temperature,
+            "status": status,
             "unit": "°C",
             "measurements_count": len(all_recent_temps),
             "timestamp": datetime.now(timezone.utc).isoformat()

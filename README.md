@@ -1,10 +1,12 @@
 [![Dynamic DevOps Roadmap](https://img.shields.io/badge/Dynamic_DevOps_Roadmap-559e11?style=for-the-badge&logo=Vercel&logoColor=white)](https://devopsroadmap.io/getting-started/)
 [![Community](https://img.shields.io/badge/Join_Community-%23FF6719?style=for-the-badge&logo=substack&logoColor=white)](https://newsletter.devopsroadmap.io/subscribe)
 [![Telegram Group](https://img.shields.io/badge/Telegram_Group-%232ca5e0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/DevOpsHive/985)
-[![Fork on GitHub](https://img.shields.io/badge/Fork_On_GitHub-%2336465D?style=for-the-badge&logo=github&logoColor=white)](/fork)
+[![Fork on GitHub](https://img.shields.io/badge/Fork_On_GitHub-%2336465D?style=for-the-badge&logo=github&logoColor=white)](/fork) ![OSSF-Scorecard Score](https://img.shields.io/ossf-scorecard/github.com/ahmedmokhalaf/devops-hands-on-project-hivebox?style=for-the-badge&logoColor=logoColor%3Dwhite&label=ossf%20scorecard) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/ahmedmokhalaf/devops-hands-on-project-hivebox/scorecard.yml?style=for-the-badge&logo=github&logoColor=white&label=Scorecard%20supply-chain%20security) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/ahmedmokhalaf/devops-hands-on-project-hivebox/ci.yml?style=for-the-badge&logo=github&logoColor=white&label=CI%20Pipeline) 
+
+
 
 # HiveBox - DevOps End-to-End Hands-On Project
-## 🐝 HiveBox Project – Phase 3: Building the RESTful API with FastAPI
+## 🐝 HiveBox Project – Phase 4: BuildingExpand - Constructing a Shell
 
 
 <p align="center">
@@ -18,167 +20,217 @@
 
 ## 📌 Project Overview
 
-This is a lightweight backend API built with **FastAPI** that fetches environmental sensor data (temperature) using the [openSenseMap API](https://docs.opensensemap.org/). The project includes containerization, code linting, testing, and CI/CD automation.
+- **Project Name:** HiveBox
+
+- **Phase 4:** Expand-Constructing a Shell
+
+- **Roadmap Module:** [Expand-Constructing a Shell](https://devopsroadmap.io/foundations/module-04/)
+
+- **Objective:** Extend the application by integrating environment configurability, Kubernetes deployment, Prometheus metrics, and basic GitHub CI/CD workflows.
 
 ---
 
 ## 🚀 Features
 
-- **/version** – Returns the current version of the deployed app
-- **/temperature** – Returns average temperature data from all senseBoxes (within the last 1 hour)
-- **openSenseMap API integration**
-- Fully containerized with **Docker**
-- Automated **CI/CD** with GitHub Actions
-- Code quality enforcement via **Pylint** and **Hadolint**
-- Secure development practices with **OpenSSF Scorecard**
+- Dynamic configuration via environment variables.
+- Prometheus-compatible metrics endpoint.
+- Temperature status classification.
+- Kubernetes deployment with KIND and Ingress.
+- Optimized Docker build process.
+- Extended CI/CD pipeline with static analysis and testing.
 
 ---
 
-## 📦 Tech Stack
+## 🎯 Goals for Phase 4
+ 1 - Make Application Configurable via Env Vars
 
-- [FastAPI](https://fastapi.tiangolo.com/)
-- Python 3.9-slim
-- Docker
-- GitHub Actions (CI/CD)
-- openSenseMap API
-- Pylint, Hadolint (Linting)
-- Pytest (Unit Testing)
+- Configure senseBox IDs dynamically from environment variables.
+
+ 2 - Metrics Endpoint
+
+- Implement /metrics endpoint to expose Prometheus metrics (using Starlette or Prometheus FastAPI exporter).
+
+3 - Extend /temperature Endpoint
+
+- Add status field based on average temperature:
+
+  - <10°C → Too Cold
+
+  - 11–36°C → Good
+
+  - 37°C → Too Hot
+
+4 - Kubernetes Deployment
+
+  - Create KIND config with Ingress-Nginx.
+
+  - Create basic Kubernetes manifests: Deployment, Service, Ingress.
+
+5- Improve Containers
+
+  - Apply Docker best practices (multi-stage build, smaller images).
+
+ 6- Extend CI Pipeline 
+
+  - Lint Python code and Dockerfile.
+
+  - Build and push Docker image.
+
+  - Run integration tests.
+
+  - Verify /version and /temperature endpoints.
+
+  - Include SonarQube and Terrascan static analysis checks.
+
 
 ---
 
-## 🧰 Setup Instructions
+## ⚙️ Prerequisites & Development Tools
 
-### 🔨 Prerequisites
+Before setting up the project, ensure the following tools are installed on your system:
 
-- Python 3.9-slim
-- Docker & Docker Compose
-- [VS Code](https://code.visualstudio.com/) with extensions:
-  - Pylint
-  - Hadolint
+- **Python**: Version 3.8 or higher. [Download Python](https://www.python.org/downloads/)
+- **Docker**: For containerization. [Install Docker](https://docs.docker.com/get-docker/)
+- **Kubernetes (KIND)**: For local Kubernetes cluster setup. [Install KIND](https://kind.sigs.k8s.io/docs/user/quick-start/)
+- **kubectl**: Kubernetes command-line tool. [Install kubectl](https://kubernetes.io/docs/tasks/tools/)
+- **Make**: Build automation tool (optional but recommended). [Install Make](https://www.gnu.org/software/make/)
+
+- **Prometheus**: Monitoring system and time series database. [Download Prometheus](https://prometheus.io/download)
+- **Grafana**: Analytics and monitoring platform for visualizing metrics. [Install Grafana](https://grafana.com/docs/grafana/latest/setup-grafana/installation/)
 
 ---
 
-### 📥 Install Dependencies
+## 📦 Installing Dependencies
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/ahmedmokhalaf/devops-hands-on-project-hivebox.git
+   cd hivebox
+   ```
+
+2. **Set Up a Virtual Environment**
+
+   Create and activate a virtual environment to manage project dependencies:
+
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+3. **Install Python Dependencies**
+
+   Install the required Python packages using `pip`:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+   Alternatively, for a more comprehensive setup including optional dependencies:
+
+   ```bash
+   pip install "fastapi[all]" uvicorn pytest
+   ```
+---
+
+
+
+## 🚀 Getting Started
+
+1. **Configure Environment Variables**
+
+   Create a `.env` file in the project root with the following content:
+
+   ```env
+   VERSION=0.2.0
+   BOX_IDS=5eba5fbad46fb8001b799786,5c21ff8f919bf8001adf2488,5ade1acf223bd80019a1011c
+   SENSEBOX_API=https://api.opensensemap.org
+   ```
+
+2. **Run the Application Locally**
+
+   Start the FastAPI application using Uvicorn:
+
+   ```bash
+   uvicorn app.main:app --reload
+   ```
+
+
+
+---
+
+## 🐳 Docker Deployment
+
+1. **Build the Docker Image**
+
+   ```bash
+   docker build -t hivebox:0.2.0 .
+   ```
+
+2. **Run the Docker Container**
+
+   ```bash
+   docker run --env-file .env -p 8000:8000 hivebox:0.2.0
+   ```
+
+   The application will be accessible at [http://localhost:8000](http://localhost:8000).
+
+---
+
+## ☸️ Kubernetes Deployment with KIND
+
+1. **Create a KIND Cluster**
+
+   ```bash
+   kind create cluster --name hivebox-cluster
+   ```
+
+2. **Apply Kubernetes Manifests**
+
+   ```bash
+   kubectl apply -f k8s/deployment.yaml
+   kubectl apply -f k8s/service.yaml
+   kubectl apply -f k8s/ingress.yaml
+   ```
+
+3. **Access the Application**
+
+   Configure your `/etc/hosts` file or DNS to route to the Ingress controller and access the application via the defined Ingress rules.
+
+---
+
+## 🧪 Testing
+
+Run the test suite using `pytest`:
 
 ```bash
-python -m venv venv
-source venv/bin/activate  # or .\venv\Scripts\activate on Windows
-pip install -r requirements.txt
+pytest --cov=app
 ```
 
----
-
-### 🧪 Run Tests
-
-```bash
-pytest
-```
+This command will execute all unit and integration tests and provide a coverage report.
 
 ---
 
-### ▶️ Run the App (Dev)
+## 📈 Metrics
 
-```bash
-uvicorn app.main:app --reload
-```
+The `/metrics` endpoint exposes Prometheus-compatible metrics, including:
 
----
+- HTTP request counts
+- Application version
+- Custom application-specific metrics
 
-## 🐳 Docker Usage
-
-### 🏗️ Build the Docker Image
-
-```bash
-docker build -t hivebox-api .
-```
-
-### 🚀 Run the Container
-
-```bash
-docker run -d hivebox-api
-```
+To scrape these metrics, configure Prometheus to target the `/metrics` endpoint.
 
 ---
 
-## 🔁 API Endpoints
+## 🛠️ CI/CD Pipeline
 
-### `/version`
+The CI/CD pipeline includes:
 
-**Method**: `GET`  
-**Response**:
-```json
-{
-  "version": "0.1.0"
-}
-```
+- **Linting**: Python code and Dockerfile linting.
+- **Testing**: Unit and integration tests.
+- **Static Analysis**: SonarQube and Terrascan checks.
+- **Docker Build**: Build and push Docker images.
+- **Deployment**: Deploy to Kubernetes cluster.
 
 ---
-
-### `/temperature`
-
-**Method**: `GET`  
-**Response**:
-```json
-{
-  "average_temperature": 13.61,
-  "unit": "°C",
-  "measurements_count": 3,
-  "timestamp": "2025-04-24T20:40:08.237476+00:00"
-}
-```
-
-**Note**: Only includes sensor data from the last **1 hour**.
-
----
-
-## 🔧 Development Tools
-
-- **Linting**:  
-  - Python: `pylint`
-  - Docker: `hadolint`
-
-- **Git**:  
-  - Follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
-  - Pre-commit checks via GitHub Actions
-
----
-
-## 🔄 Continuous Integration (GitHub Actions)
-
-- Lint Python code and Dockerfile
-- Build Docker image
-- Run unit tests
-- Verify `/version` endpoint response
-- OpenSSF Scorecard integration
-
----
-
-## 🔒 Security & Best Practices
-
-- OpenSSF Scorecard GitHub Action integration
-- Docker built with multi-stage and non-root user
-- CI enforces quality and security standards
-
----
-
-## 📄 License
-
-MIT License. See `LICENSE` for details.
-
----
-
-## 👥 Contributors
-
-Maintained by the backend engineering team 🚀
-
----
-
-## 📬 Feedback & Issues
-
-Found a bug or have a feature request? [Open an issue](https://github.com/your-org/sensor-api/issues).
-
-```
-
----
-
-Let me know if you'd like this adapted to use Flask instead of FastAPI, or want a badge section (CI status, Docker build, etc.) added at the top.

@@ -155,12 +155,14 @@ async def test_temperature_endpoint_mocked(mock_async_client_class, mock_box_dat
     mock_context = AsyncMock()
     mock_context.__aenter__.return_value = mock_client
     mock_async_client_class.return_value = mock_context
-    response = client.get("/api/v1/temperature")
-    assert response.status_code == 200
-    data = response.json()
-    assert "average_temperature" in data
-    assert data["average_temperature"] == 23.5
-    assert data["unit"] == "°C"
-    assert data["measurements_count"] > 0
-    assert "timestamp" in data
+    # Mock the endpoint response to simulate a successful API call
+    with patch("app.api.v1.endpoints.get_temperature_sensor_id", return_value=mock_box_data["sensors"][0]["_id"]):
+        response = client.get("/api/v1/temperature")
+        assert response.status_code == 200
+        data = response.json()
+        assert "average_temperature" in data
+        assert data["average_temperature"] == 23.5
+        assert data["unit"] == "°C"
+        assert data["measurements_count"] > 0
+        assert "timestamp" in data
 
